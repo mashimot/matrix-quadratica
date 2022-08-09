@@ -1,0 +1,49 @@
+<section class="step mb-3" *ngIf="STEPS === 0">
+    <app-rotate-form (entryValue)="onEntryValueChange($event)"></app-rotate-form>
+</section>
+
+<section class="step mb-3" *ngIf="STEPS === 1">
+    <div class="mb-3">
+        <button class="btn btn-success" (click)="STEPS = 0">
+            <i class="bi bi-arrow-left-circle"></i> Voltar
+        </button>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <h3 class="mb-3">Saída</h3>
+                <div class="col-md-6">
+                    <table class="table table-bordered table-condensed table-sm">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Original</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mO of matrixOriginal; let indexRow = index">
+                                <td *ngFor="let value of mO; let indexColumn = index"><b>{{ value }}</b></td>
+                            </tr>  
+                        </tbody>
+                    </table> 
+                    <button class="btn btn-success" (click)="rotateMatrixAlreadyDefined()">
+                        <i class="bi bi-boxes"></i> Rotacionar
+                    </button>
+                    <table class="table table-bordered table-condensed table-sm">
+                        <thead>
+                            <tr>
+                                <th colspan="4">Rotacionado</th>
+                            </tr>
+                        </thead>    
+                        <tbody>
+                            <tr *ngFor="let m of matrix; let indexRow = index">
+                                <td *ngFor="let value of m; let indexColumn = index">{{ value }}</td>
+                            </tr>  
+                        </tbody>
+                    </table>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  

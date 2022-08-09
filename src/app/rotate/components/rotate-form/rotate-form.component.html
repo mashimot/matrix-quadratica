@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-body">
+        <form [formGroup]="form" class="mb-3">
+            <div class="form-group">
+                <label for="fast_entry">Fast Entry</label>
+                <textarea formControlName="fast_entry" id="fast_entry" class="form-control" cols="30" rows="10"></textarea>
+            </div>        
+            <div class="btn-group mt-3 mb-3">
+                <button type="button" (click)="entries.push(createListaNumeros())" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i> Adicionar
+                </button>
+            </div>
+            <div formArrayName="entries" *ngFor="let entry of entries!.controls; let indexEntries = index;">
+                <div class="form-group col-md-12 mb-3">
+                    <label for="entries">Entrada</label>
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            [formControlName]="indexEntries" 
+                            id="entries" 
+                            class="form-control" 
+                            [class.is-invalid]="!entries.at(indexEntries)?.valid"
+                        >
+
+                        <button 
+                            class="btn btn-success"
+                            *ngIf="entries.at(indexEntries).valid"
+                            (click)="entryValueSelected(entries.at(indexEntries).value)"
+                        >
+                            <i class="bi bi-boxes"></i> Rotacionar
+                        </button>
+                        <button 
+                            class="btn btn-danger"
+                            (click)="deleteEntries(indexEntries)"
+                        >
+                            <i class="bi bi-trash-fill"></i>
+                        </button>
+                      
+                        <div *ngIf="entries.at(indexEntries)?.invalid" class="invalid-feedback">
+                            <div 
+                                *ngIf="entries.at(indexEntries)!.hasError('mustBeNumeric')" 
+                                class="preverse-white-space"
+                            >Entrada deve ser uma sequência de números. Erro: <b>{{ entries.at(indexEntries)!.errors?.['mustBeNumeric']['errorAt'] }}</b></div>
+                            <div *ngIf="entries.at(indexEntries)!.hasError('isSquareMatrixInvalid')">Entrada Inválida</div>
+                            <div *ngIf="entries.at(indexEntries)!.hasError('required')">Entrada é obrigatório</div>
+                            <div *ngIf="entries.at(indexEntries)!.hasError('minlength')">Entrada minina deve ser 3</div>
+                            <div *ngIf="entries.at(indexEntries)!.hasError('maxlength')">Entrada máxima deve ser 4000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="entries.invalid">
+                <div *ngIf="entries.hasError('minLength')">
+                    <b>Adicione uma entrada</b>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
