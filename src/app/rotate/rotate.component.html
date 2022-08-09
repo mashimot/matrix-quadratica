@@ -12,28 +12,23 @@
         <div class="card-body">
             <div class="row">
                 <h3 class="mb-3">Saída</h3>
+                <h4 class="mb-3">Original</h4>
                 <div class="col-md-6">
                     <table class="table table-bordered table-condensed table-sm">
-                        <thead>
-                            <tr>
-                                <th colspan="4">Original</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             <tr *ngFor="let mO of matrixOriginal; let indexRow = index">
                                 <td *ngFor="let value of mO; let indexColumn = index"><b>{{ value }}</b></td>
                             </tr>  
                         </tbody>
                     </table> 
-                    <button class="btn btn-success" (click)="rotateMatrixAlreadyDefined()">
-                        <i class="bi bi-boxes"></i> Rotacionar
-                    </button>
+
+                    <div class="mb-3">
+                        <button class="btn btn-success" (click)="rotateMatrixAlreadyDefined()">
+                            <i class="bi bi-boxes"></i> Rotacionar
+                        </button>
+                    </div>
+                    <h4 class="mb-3">Rotacionado</h4>
                     <table class="table table-bordered table-condensed table-sm">
-                        <thead>
-                            <tr>
-                                <th colspan="4">Rotacionado</th>
-                            </tr>
-                        </thead>    
                         <tbody>
                             <tr *ngFor="let m of matrix; let indexRow = index">
                                 <td *ngFor="let value of m; let indexColumn = index">{{ value }}</td>
